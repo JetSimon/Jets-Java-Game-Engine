@@ -12,18 +12,14 @@ public class ControllerComponent extends Component
 
     public void update()
     {
-        entity.x += ax;
-        entity.y += ay;
-
         //If object has a collider and it is touching something, you cannot move!!!
         if(entity.getComponent(ColliderComponent.class) != null)
         {
             ColliderComponent c = (ColliderComponent)entity.getComponent(ColliderComponent.class);
             if(c.isTouching)
             {
-                ax *= -1;
-                ay *= -1;
-                return;
+                ax *= -1.5;
+                ay *= -1.5;
             }
         }
 
@@ -49,6 +45,9 @@ public class ControllerComponent extends Component
         {
             ax += 1;
         }
+
+        entity.x += ax;
+        entity.y += ay;
 
         ax = Math.min(ax, max_ax);
         ay = Math.min(ay, max_ay);

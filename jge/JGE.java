@@ -80,20 +80,20 @@ public class JGE extends JPanel implements KeyListener
     }
 
     public void keyPressed(KeyEvent e) {
-        String k = e.getKeyText(e.getKeyCode());
+        String k = e.getKeyText(e.getKeyCode()); //This sucks replace later
         if(!keysDown.contains(k))
             keysDown.add(k);
     }
 
     public void keyReleased(KeyEvent e) {
-        String k = e.getKeyText(e.getKeyCode());
+        String k = e.getKeyText(e.getKeyCode()); //Ditto
         keysDown.remove(k);
         //System.out.println(keysDown.toString());
     }
     
     
     public void keyTyped(KeyEvent e) {
-        //System.out.println("keyTyped");
+        //I had to put this here??...
     }
 
     public boolean isKeyDown(String k)
