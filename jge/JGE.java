@@ -8,14 +8,15 @@ import java.util.ArrayList;
 
 public class JGE extends JPanel implements KeyListener
 {
-    public String title;
+    public String title; //Title that will appear in window
 
-    public ArrayList<Entity> entities = new ArrayList<Entity>();
+    public ArrayList<Entity> entities = new ArrayList<Entity>(); //List of entities in game
 
-    public ArrayList<Entity> colliders = new ArrayList<Entity>();
+    public ArrayList<Entity> colliders = new ArrayList<Entity>(); //List of entities in game that have colliders
 
-    ArrayList<String> keysDown = new ArrayList<String>();
+    ArrayList<String> keysDown = new ArrayList<String>(); //List of keys down in string format. NOT keycode!
 
+    //Default constructor with no background colour
     public JGE(String title, int width, int height)
     {
         this(title, width, height, Color.WHITE);
@@ -25,13 +26,16 @@ public class JGE extends JPanel implements KeyListener
     {
         this.title = title;
 
+        //Make keyboard controls work
         addKeyListener(this);
         setFocusable(true);
 
+        //Basic window setup
         setPreferredSize( new Dimension(width, height) );
         setBackground(background); 
     }
 
+    //This method should only be called once to start your game!
     public void start()
     {
         JFrame frame = new JFrame( this.title );
@@ -42,6 +46,7 @@ public class JGE extends JPanel implements KeyListener
 
         for (Entity entity : entities) 
         {
+            //Components are called in order they are added in entity
             for (Component c : entity.components)
             {
                 c.jge = this;
@@ -50,6 +55,7 @@ public class JGE extends JPanel implements KeyListener
         }
     }
 
+    //Called every frame
     public void updateEntities()
     {
         for (Entity entity : entities) 
@@ -63,6 +69,7 @@ public class JGE extends JPanel implements KeyListener
         this.repaint();
     }
 
+    //Called during updateEntities
     public void paintComponent ( Graphics gr )
     { 
         super.paintComponent( gr );
@@ -96,6 +103,7 @@ public class JGE extends JPanel implements KeyListener
         //I had to put this here??...
     }
 
+    //Check if keysDown input array has key k down in
     public boolean isKeyDown(String k)
     {
         return keysDown.contains(k);

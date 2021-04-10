@@ -1,6 +1,7 @@
 package jge.stockComponents;
 import jge.Component;
 
+//Very basic base character controller. Supports collision using ColliderComponent. Is not physically accurate!
 public class ControllerComponent extends Component
 {
     double max_ax = 50;
@@ -9,13 +10,19 @@ public class ControllerComponent extends Component
     double ax = 0;
     double ay = 0;
 
+    //You can declare components to reference like this so you only have to find them once!
+    ColliderComponent c;
+
+    public void start()
+    {
+        c = (ColliderComponent)entity.getComponent(ColliderComponent.class); //And then find the components and assign to use!
+    }
 
     public void update()
     {
         //If object has a collider and it is touching something, you cannot move!!!
-        if(entity.getComponent(ColliderComponent.class) != null)
+        if(c != null)
         {
-            ColliderComponent c = (ColliderComponent)entity.getComponent(ColliderComponent.class);
             if(c.isTouching)
             {
                 ax *= -1.5;

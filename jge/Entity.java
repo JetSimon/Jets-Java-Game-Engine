@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /*
     TODO:
     1. CHANGE COLLIDER TO POOLING SYSTEM SO YOU CAN CHECK SPECIFIC OBJECT?
+    2. BOUNDING BOX COLLIDER AND IMAGE INSTEAD
 */
 
 public class Entity 
@@ -22,10 +23,10 @@ public class Entity
     }
 
     public Component getComponent(Class<?> looking)
-    {   
+    { 
+        //Will return first instance of component on entity!  
         for (Component component : components) 
         {
-            //System.out.println(component.getClass().getSimpleName());
             if(looking.isInstance(component))
             {
                 return component;
@@ -36,6 +37,7 @@ public class Entity
         return null;
     }
 
+    //In the future we will make this have an image and bounding box model instead. I don't know why I am typing we, it's just me.
     public Entity(double x, double y, int width, int height)
     {
         this.x = x;

@@ -2,6 +2,8 @@ package jge.stockComponents;
 import jge.Component;
 import jge.Entity;
 
+//Base collider component. Uses box collision. Add this to an entity to support collision detection out of box.
+//Only returns if touching, does not yet say WHAT touching. Soon this will change!
 public class ColliderComponent extends Component 
 {
     public boolean isTouching = false;
