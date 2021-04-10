@@ -1,6 +1,6 @@
 package jge;
 
-public class Component 
+public class Component
 {
     public Entity entity;
     public JGE jge;

@@ -11,6 +11,9 @@ public class ControllerComponent extends Component
 
     public void update()
     {
+        if(entity.getComponent(new ColliderComponent()))
+            return;
+
         ay *= 0.9;
         ax *= 0.9;
 
