@@ -1,4 +1,6 @@
-package jge;
+package jge.stockComponents;
+import jge.Component;
+import jge.Entity;
 
 public class ColliderComponent extends Component 
 {

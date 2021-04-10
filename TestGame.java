@@ -1,4 +1,5 @@
 import jge.*;
+import jge.stockComponents.*;
 
 public class TestGame
 {
@@ -8,7 +9,10 @@ public class TestGame
         JGE game = new JGE("Test", 200, 200);
 
         Entity player = new Entity(100,100,20,20);
+
         player.addComponent(new ControllerComponent());
+        player.addComponent(new ColliderComponent());
+
         game.AddEntity(player);
 
         game.start();

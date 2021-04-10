@@ -1,4 +1,5 @@
-package jge;
+package jge.stockComponents;
+import jge.Component;
 
 public class ControllerComponent extends Component
 {
@@ -11,8 +12,20 @@ public class ControllerComponent extends Component
 
     public void update()
     {
-        if(entity.getComponent(new ColliderComponent()))
-            return;
+        entity.x += ax;
+        entity.y += ay;
+
+        //If object has a collider and it is touching something, you cannot move!!!
+        if(entity.getComponent(ColliderComponent.class) != null)
+        {
+            ColliderComponent c = (ColliderComponent)entity.getComponent(ColliderComponent.class);
+            if(c.isTouching)
+            {
+                ax *= -1;
+                ay *= -1;
+                return;
+            }
+        }
 
         ay *= 0.9;
         ax *= 0.9;
@@ -39,8 +52,5 @@ public class ControllerComponent extends Component
 
         ax = Math.min(ax, max_ax);
         ay = Math.min(ay, max_ay);
-
-        entity.x += ax;
-        entity.y += ay;
     }
 }

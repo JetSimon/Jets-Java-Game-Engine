@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Entity 
 {
-    double x, y;
-    int width, height;
+    public double x, y;
+    public int width, height;
     Color color = Color.RED;
     ArrayList<Component> components = new ArrayList<Component>();
 
@@ -15,17 +15,18 @@ public class Entity
         components.add(c);
     }
 
-    public Component getComponent(Class<? extends Component> c)
+    public Component getComponent(Class<?> looking)
     {   
         for (Component component : components) 
         {
             //System.out.println(component.getClass().getSimpleName());
-            if(component instanceof c)
+            if(looking.isInstance(component))
             {
                 return component;
             }   
         }
-        System.out.println("ERROR: NO COMPONENT FOUND WITH NAME " + c.getClass().getSimpleName());
+
+        System.out.println("ERROR: NO COMPONENT FOUND WITH NAME " + looking.getClass().getSimpleName());
         return null;
     }
 
