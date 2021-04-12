@@ -1,6 +1,7 @@
 package jge;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -83,11 +84,9 @@ public class JGE extends JPanel implements KeyListener
     public void paintComponent ( Graphics gr )
     { 
         super.paintComponent( gr );
-
         for (Entity entity : entities) 
         {
-            gr.setColor( entity.color );
-            gr.fillRect((int)entity.x, (int)entity.y, entity.width, entity.height);
+            gr.drawImage(entity.image, (int)entity.x, (int)entity.y, null);
         }
     }
 

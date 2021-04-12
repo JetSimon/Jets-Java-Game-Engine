@@ -1,19 +1,17 @@
 package jge;
-import java.awt.Color;
 import java.util.ArrayList;
-
-/*
-    TODO:
-    1. CHANGE COLLIDER TO POOLING SYSTEM SO YOU CAN CHECK SPECIFIC OBJECT?
-    2. BOUNDING BOX COLLIDER AND IMAGE INSTEAD
-*/
+import java.awt.image.*;
+import javax.imageio.ImageIO;
+import java.io.*;
 
 public class Entity 
 {
     public double x, y; //position
     public int width, height; //width height
-    public String tag; //To use to determine what kind of entity you're colliding with and stuff
-    Color color = Color.RED; //temp, used until image support is added
+    public String tag, imagePath; //To use to determine what kind of entity you're colliding with and stuff
+
+    BufferedImage image;
+
     ArrayList<Component> components = new ArrayList<Component>(); //List of all components attached to this entity
 
     public void addComponent(Component c)
@@ -38,11 +36,28 @@ public class Entity
     }
 
     //In the future we will make this have an image and bounding box model instead. I don't know why I am typing we, it's just me.
-    public Entity(double x, double y, int width, int height)
+    public Entity(double x, double y, int width, int height, String imagePath)
     {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.imagePath = imagePath;
+
+        try
+        {
+            this.image = ImageIO.read(new File(this.imagePath));
+        }
+        catch(IOException ex)
+        {
+            System.out.println("ERROR LOADING IMAGE FOR SPRITE");
+        }
+        
+    }
+
+    public Entity(double x, double y, int width, int height)
+    {
+        //Change this to be non-os dependant
+        this(x,y,width,height,"default_resources/default_sprite.png");
     }
 }
