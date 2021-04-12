@@ -10,13 +10,10 @@ So far it supports:
 * Add your own custom components to objects with our premium *Entity-Component* system! 😳
 * Or use our built in components, including the mysterious **PhysicsComponent**! 🕵🏾‍♂️
 
-<div style="text-align:center">
 
 ![](example.gif)
 
 <sub><sup>👾 *the example game that comes with the package*</sub></sup>
-
-</div>
 
 ---
 
