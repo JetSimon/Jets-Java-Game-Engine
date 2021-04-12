@@ -15,17 +15,19 @@ public class ColliderComponent extends Component
         jge.colliders.add(entity);
     }
 
-    public void update()
+    public void preupdate()
     {
         touching = new ArrayList<Entity>(); //This is probably bad to do like this so I'll replace this later
         for (Entity col : jge.colliders) 
         {
             //Don't touch yourself!
             if(col == entity)
-                return;
-            
+                continue;
+
             if(getTouching(col))
+            {
                 touching.add(col);
+            }
         }
     }
 
@@ -38,7 +40,7 @@ public class ColliderComponent extends Component
     {
         for (Entity e : touching)
         {
-            if(e.tag == tag)
+            if(e.tag.equals(tag))
             {
                 return true;
             }

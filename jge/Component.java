@@ -12,6 +12,11 @@ public class Component
         //Override me
     }
 
+    public void preupdate()
+    {
+        //Override me if you want to do stuff before the update
+    }
+
     public void update()
     {
         //Override me harder

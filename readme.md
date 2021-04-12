@@ -1,6 +1,6 @@
 # WELCOME TO JGE (Jet's-Java Game Engine)! 👋 
 
-This is a bare-bones Java game engine built off of JSwing just to learn more about Java and OOP.
+> JGE is a bare-bones Java Game Engine built off of JSwing made by me (Jet Simon) to learn more about Java and OOP.
 
 So far it supports:
 
@@ -10,6 +10,11 @@ So far it supports:
 * Add your own custom components to objects with our premium *Entity-Component* system! 😳
 * Or use our built in components, including the mysterious **PhysicsComponent**! 🕵🏾‍♂️
 
+![](example.gif)
+<sub><sup>👾 *the example game that comes with the package*</sub></sup>
+
+---
+
 ## TODO 📝
 
 - [X] ~~Change collision from a boolean system -> pooling system~~
@@ -18,5 +23,8 @@ So far it supports:
 - [ ] Add PhysicsComponent
 - [X] ~~Add image support for sprites~~
 - [ ] Change collision boxes to collision component system for more flexible use.
-- [ ] Create a fun little example game to show off our amazing features!
+- [X] ~~Create a fun little example game to show off our amazing features!~~
 - [ ] Add a scene system. Scene class? Contains layers that contain entities? This is making a lot of sense!
+- [ ] Once scene system is added in, make it so you can actually win and lose the example game!
+- [ ] Add rotation to sprites
+- [ ] Add some sort of "prefab" system like Unity?

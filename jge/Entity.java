@@ -6,9 +6,12 @@ import java.io.*;
 
 public class Entity 
 {
+    JGE jge;
+
     public double x, y; //position
     public int width, height; //width height
-    public String tag, imagePath; //To use to determine what kind of entity you're colliding with and stuff
+    public String tag = "Default";
+    String imagePath; //To use to determine what kind of entity you're colliding with and stuff
 
     BufferedImage image;
 
@@ -59,5 +62,10 @@ public class Entity
     {
         //Change this to be non-os dependant
         this(x,y,width,height,"default_resources/default_sprite.png");
+    }
+
+    public void destroy()
+    {
+        jge.toRemove.add(this);
     }
 }

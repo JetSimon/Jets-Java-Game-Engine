@@ -11,17 +11,26 @@ import java.util.ArrayList;
 
 public class JGE extends JPanel implements KeyListener
 {
+    boolean running = false;
+
     public String title; //Title that will appear in window
 
     public ArrayList<Entity> entities = new ArrayList<Entity>(); //List of entities in game
-
     public ArrayList<Entity> colliders = new ArrayList<Entity>(); //List of entities in game that have colliders
+    public ArrayList<Entity> toRemove = new ArrayList<Entity>();
+    public ArrayList<Entity> toAdd = new ArrayList<Entity>();
+    int deltaAdd = 0;
+    int deltaRemove = 0;
 
     ArrayList<String> keysDown = new ArrayList<String>(); //List of keys down in string format. NOT keycode!
 
     //Mouse stuff
     public int mouseX = 0;
     public int mouseY = 0;
+    
+    //Screen stuff in case you need it
+    private int screenWidth, screenHeight;
+
     public boolean mousePressed = false; //When mouse is down, use to check
 
     //Default constructor with no background colour
@@ -33,6 +42,8 @@ public class JGE extends JPanel implements KeyListener
     public JGE(String title, int width, int height, Color background)
     {
         this.title = title;
+        this.screenWidth = width;
+        this.screenHeight = height;
 
         //Make mouse input work
         addMouseInput(this);
@@ -49,6 +60,7 @@ public class JGE extends JPanel implements KeyListener
     //This method should only be called once to start your game!
     public void start()
     {
+        running = true;
         JFrame frame = new JFrame( this.title );
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         frame.getContentPane().add( this );
@@ -57,18 +69,27 @@ public class JGE extends JPanel implements KeyListener
 
         for (Entity entity : entities) 
         {
-            //Components are called in order they are added in entity
-            for (Component c : entity.components)
-            {
-                c.jge = this;
-                c.start();
-            }    
+            AwakenEntity(entity); 
         }
     }
 
-    //Called every frame
-    public void updateEntities()
+    public void gameLoop()
     {
+        updateEntities();
+        addAndRemoveEntities();
+    }
+
+    //Called every frame
+    void updateEntities()
+    {
+        for (Entity entity : entities) 
+        {
+            for (Component c : entity.components)
+            {
+                c.preupdate();
+            }    
+        }
+
         for (Entity entity : entities) 
         {
             for (Component c : entity.components)
@@ -76,8 +97,27 @@ public class JGE extends JPanel implements KeyListener
                 c.update();
             }    
         }
-
         this.repaint();
+    }
+
+    void addAndRemoveEntities()
+    {
+        for (Entity entity : toAdd)
+        {
+            entities.add(entity);
+            AwakenEntity(entity);
+        }
+
+        for (Entity entity : toRemove)
+        {
+            if(colliders.contains(entity))
+                colliders.remove(entity);
+            if(entities.contains(entity))
+                entities.remove(entity);
+        }
+
+        toAdd = new ArrayList<Entity>();
+        toRemove = new ArrayList<Entity>();
     }
 
     //Called during updateEntities
@@ -92,7 +132,14 @@ public class JGE extends JPanel implements KeyListener
 
     public void AddEntity(Entity e)
     {
-        this.entities.add(e);
+        if(!running)
+        {
+            this.entities.add(e);
+        }
+        else
+        {
+            toAdd.add(e);
+        }
     }
 
     public void keyPressed(KeyEvent e) {
@@ -143,6 +190,42 @@ public class JGE extends JPanel implements KeyListener
                 j.mouseY = e.getY();
             }
         });
+    }
+
+    public int getScreenWidth()
+    {
+        return this.screenWidth;
+    }
+
+    public int getScreenHeight()
+    {
+        return this.screenHeight;
+    }
+
+    public ArrayList<Entity> getAllWithTag(String tag)
+    {
+        ArrayList<Entity> output = new ArrayList<Entity>();
+
+        for(Entity entity : entities)
+        {
+            if(entity.tag.equals(tag))
+            {
+                output.add(entity);
+            }
+        }
+
+        return output;
+    }
+
+    void AwakenEntity(Entity entity)
+    {
+        entity.jge = this;
+        //Components are called in order they are added in entity
+        for (Component c : entity.components)
+        {
+            c.jge = this;
+            c.start();
+        }   
     }
 
 }
