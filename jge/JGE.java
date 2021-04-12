@@ -145,13 +145,13 @@ public class JGE extends JPanel implements KeyListener
     }
 
     public void keyPressed(KeyEvent e) {
-        String k = e.getKeyText(e.getKeyCode()); //This sucks replace later
+        String k = Integer.toString(e.getKeyCode());
         if(!keysDown.contains(k))
             keysDown.add(k);
     }
 
     public void keyReleased(KeyEvent e) {
-        String k = e.getKeyText(e.getKeyCode()); //Ditto
+        String k = Integer.toString(e.getKeyCode());
         keysDown.remove(k);
         //System.out.println(keysDown.toString());
     }
@@ -165,6 +165,11 @@ public class JGE extends JPanel implements KeyListener
     public boolean isKeyDown(String k)
     {
         return keysDown.contains(k);
+    }
+
+    public boolean isKeyDown(int k)
+    {
+        return isKeyDown(Integer.toString(k));
     }
 
     public void addMouseInput(JGE j)

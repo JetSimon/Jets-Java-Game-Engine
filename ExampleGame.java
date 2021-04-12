@@ -94,12 +94,12 @@ class PlayerComponent extends Component
         //Controls
         velocity = 0;
 
-        if(jge.isKeyDown("A") && entity.x > 16)
+        if(jge.isKeyDown(65) && entity.x > 16)
         {
             velocity = -speed;
         }
 
-        if(jge.isKeyDown("D") && entity.x < jge.getWidth() - 16)
+        if(jge.isKeyDown(68) && entity.x < jge.getWidth() - 16)
         {
             velocity = speed;
         }
@@ -107,7 +107,7 @@ class PlayerComponent extends Component
         entity.x += velocity;
 
         //Shooting controls!
-        if(jge.isKeyDown("␣") && bulletTimer <= 0)
+        if(jge.isKeyDown(32) && bulletTimer <= 0)
         {
             bulletTimer = 10;
             Entity bullet = new Entity(entity.x+15, entity.y-10, 2, 2, "ExampleGame_Resources/bullet.png");

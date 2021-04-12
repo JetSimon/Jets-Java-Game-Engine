@@ -33,22 +33,22 @@ public class ControllerComponent extends Component
         ay *= 0.9;
         ax *= 0.9;
 
-        if(jge.isKeyDown("W"))
+        if(jge.isKeyDown(87))
         {
             ay -= 1;
         }
 
-        if(jge.isKeyDown("S"))
+        if(jge.isKeyDown(83))
         {
             ay += 1;
         }
 
-        if(jge.isKeyDown("A"))
+        if(jge.isKeyDown(65))
         {
             ax -= 1;
         }
 
-        if(jge.isKeyDown("D"))
+        if(jge.isKeyDown(68))
         {
             ax += 1;
         }
