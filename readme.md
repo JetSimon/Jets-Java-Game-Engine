@@ -11,9 +11,9 @@ So far it supports:
 * Or use our built in components, including the mysterious **PhysicsComponent**! 🕵🏾‍♂️
 
 
-![](example.gif)
+![👾 the example game that comes with JGE](example.gif)
 
-<sub><sup>👾 *the example game that comes with the package*</sub></sup>
+<sub><sup>👾 *the example game that comes with JGE*</sub></sup>
 
 ---
 
