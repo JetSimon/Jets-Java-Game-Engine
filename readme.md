@@ -12,7 +12,7 @@ So far it supports:
 
 ## TODO 📝
 
-- [ ] Change collision from a boolean system -> pooling system
+- [X] ~~Change collision from a boolean system -> pooling system~~
 - [ ] Add SFX/music support
 - [ ] Add background, main, and foreground layering system
 - [ ] Add PhysicsComponent

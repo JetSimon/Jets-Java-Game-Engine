@@ -23,7 +23,7 @@ public class ControllerComponent extends Component
         //If object has a collider and it is touching something, you cannot move!!!
         if(c != null)
         {
-            if(c.isTouching)
+            if(c.touchingAnything())
             {
                 ax *= -1.5;
                 ay *= -1.5;

@@ -1,12 +1,13 @@
 package jge.stockComponents;
 import jge.Component;
 import jge.Entity;
+import java.util.ArrayList;
 
 //Base collider component. Uses box collision. Add this to an entity to support collision detection out of box.
 //Only returns if touching, does not yet say WHAT touching. Soon this will change!
 public class ColliderComponent extends Component 
 {
-    public boolean isTouching = false;
+    public ArrayList<Entity> touching = new ArrayList<Entity>();
 
     //On start add to pool of colliders so game knows
     public void start()
@@ -16,14 +17,34 @@ public class ColliderComponent extends Component
 
     public void update()
     {
+        touching = new ArrayList<Entity>(); //This is probably bad to do like this so I'll replace this later
         for (Entity col : jge.colliders) 
         {
             //Don't touch yourself!
             if(col == entity)
                 return;
-
-            isTouching = getTouching(col);
+            
+            if(getTouching(col))
+                touching.add(col);
         }
+    }
+
+    public boolean touchingAnything()
+    {
+        return touching.size() > 0;
+    }
+
+    public boolean touchingTag(String tag)
+    {
+        for (Entity e : touching)
+        {
+            if(e.tag == tag)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     //Basic bounding box detection code
