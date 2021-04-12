@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class JGE extends JPanel implements KeyListener
 {
+    JFrame frame;
     boolean running = false;
 
     public String title; //Title that will appear in window
@@ -61,7 +63,7 @@ public class JGE extends JPanel implements KeyListener
     public void start()
     {
         running = true;
-        JFrame frame = new JFrame( this.title );
+        frame = new JFrame( this.title );
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         frame.getContentPane().add( this );
         frame.pack();
@@ -226,6 +228,17 @@ public class JGE extends JPanel implements KeyListener
             c.jge = this;
             c.start();
         }   
+    }
+
+    public boolean isRunning()
+    {
+        return running;
+    }
+
+    public void exit()
+    {
+        running = false;
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
 }

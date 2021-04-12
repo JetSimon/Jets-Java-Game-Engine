@@ -32,7 +32,7 @@ public class ExampleGame
         game.start();
 
         //Game loop
-        while(true)
+        while(game.isRunning())
         {   
             Thread.sleep(1000/FPS); //Really shitty way to update. Need to use better way when I learn how!
             game.gameLoop();
